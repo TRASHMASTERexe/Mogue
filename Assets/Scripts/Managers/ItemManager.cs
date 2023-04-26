@@ -1,0 +1,66 @@
+using System.Linq;  
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class ItemManager : MonoBehaviour
+{
+
+    //public List<EnemyInfo> prefabs;
+    public GameObject ItemStorage;
+    private Dictionary<Rarity, List<Item>> difficultyToListPrefabs = new();
+    private Dictionary<Rarity, int> RarityToChance = new Dictionary<Rarity, int>()
+    {
+        {Rarity.uncommon, 85},
+        {Rarity.rare, 99 },
+        {Rarity.mythic, 100}
+    };
+
+    public Item rollItem()
+    {
+
+        int roll = Random.Range(1, 100);
+        int u = RarityToChance.GetValueOrDefault(Rarity.uncommon);
+        int r = RarityToChance.GetValueOrDefault(Rarity.rare);
+        int m = RarityToChance.GetValueOrDefault(Rarity.mythic);
+
+        List<Item> items = null;
+
+        if (roll >= m)
+        {
+            items = difficultyToListPrefabs.GetValueOrDefault(Rarity.mythic);
+        }
+        else if (roll >= r)
+        {
+            items = difficultyToListPrefabs.GetValueOrDefault(Rarity.rare);
+        }
+        else if (roll >= u)
+        {
+            items = difficultyToListPrefabs.GetValueOrDefault(Rarity.uncommon);
+        }
+        else
+        {
+            items = difficultyToListPrefabs.GetValueOrDefault(Rarity.common);
+        }
+
+        return items[Random.Range(0, items.Count - 1)];
+    }
+
+    private void Start()
+    {
+        ItemStorage.GetComponents<Item>().ToList().ForEach(item =>
+        {
+            Rarity rarity = item.rarity;
+            if(difficultyToListPrefabs.ContainsKey(rarity))
+            {
+                difficultyToListPrefabs.GetValueOrDefault(rarity).Add(item);
+            }
+            else
+            {
+                difficultyToListPrefabs.Add(rarity, new List<Item>() {item});
+            }
+        });
+    }
+}
