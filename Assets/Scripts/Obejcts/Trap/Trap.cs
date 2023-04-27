@@ -2,16 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap : MonoBehaviour
+public abstract class Trap : MonoBehaviour
 {
 
-    private EnemyStatBlock statBlock;
-    
-    public Trap(int dmg, int def, int spd)
-    {
-        this.statBlock = gameObject.AddComponent<EnemyStatBlock>();
-        //statBlock.StatBlockConstructor(Target.Enemy, dmg, def, spd);
-    }
+    public Sprite enemyImage;
+    public abstract int MinDmg { get; }
+    public abstract int MaxDmg { get; }
+    public abstract int MinSpd { get; }
+    public abstract int MaxSpd { get; }
+    public abstract int MinGold { get; }
+    public abstract int MaxGold { get; }
+    public abstract List<Rarity> lootRarities { get; }
+    public abstract int DifficultyLevel { get; }
 
     public void OnClick()
     {

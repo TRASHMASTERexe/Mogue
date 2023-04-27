@@ -9,11 +9,11 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject boxContainer;
-    public static TMP_Text killCounter;
-    public static TMP_Text worldName;
-    BoxPrefabManager boxPrefabManager;
+    public BoxChanceManager boxChanceManager;
     public EnemyManager enemyManager;
     public ItemManager itemManager;
+    public static TMP_Text killCounter;
+    public static TMP_Text worldName;
 
 
 
@@ -23,9 +23,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     //maybe add a shake animation and boom sound effect on box creation
     void Start()
-    {
-        boxPrefabManager = initPrefabManager();
-        
+    {   
         for (int i = 0; i < 5; i++)
         {
             addPrefab();
@@ -34,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void addPrefab()
     {
-        BoxType boxType = boxPrefabManager.getRandomPrefab();
+        BoxType boxType = boxChanceManager.getRandomPrefab();
         initBox(boxType);
         
     }
@@ -55,25 +53,5 @@ public class GameManager : MonoBehaviour
             case BoxType.Boss:
                 break;
         }
-    }
-
-    private BoxPrefabManager initPrefabManager()
-    {
-        List<PrefabInfo> prefabInfos = new List<PrefabInfo>();
-
-        prefabInfos.Add(new PrefabInfo(BoxType.Merchant, 20, 3, 50));
-        prefabInfos.Add(new PrefabInfo(BoxType.Trap, 20, 3, 50));
-        prefabInfos.Add(new PrefabInfo(BoxType.Boss, 0, 1, 100));
-
-
-        BoxPrefabManager bpm = new BoxPrefabManager(prefabInfos);
-
-        return bpm;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

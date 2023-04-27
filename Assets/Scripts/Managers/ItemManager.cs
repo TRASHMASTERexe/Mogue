@@ -48,7 +48,7 @@ public class ItemManager : MonoBehaviour
         return items[Random.Range(0, items.Count - 1)];
     }
 
-    private void Start()
+    private void Awake()
     {
         ItemStorage.GetComponents<Item>().ToList().ForEach(item =>
         {

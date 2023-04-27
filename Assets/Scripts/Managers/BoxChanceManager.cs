@@ -5,16 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class BoxPrefabManager
+public class BoxChanceManager : MonoBehaviour
 {
-    public List<PrefabInfo> prefabs;
-    public GameObject BoxContainer;
-    public List<BoxType> type = new List<BoxType>();
-
-    public BoxPrefabManager(List<PrefabInfo> prefabs)
-    {
-        this.prefabs = prefabs;
-    }
+    public List<PrefabInfo> prefabs = new List<PrefabInfo>();
 
     public BoxType getRandomPrefab()
     {
@@ -45,5 +38,12 @@ public class BoxPrefabManager
         {
             return BoxType.Enemy;
         }
+    }
+
+    private void Awake()
+    {
+        prefabs.Add(new PrefabInfo(BoxType.Merchant, 20, 3, 50));
+        prefabs.Add(new PrefabInfo(BoxType.Trap, 20, 3, 50));
+        prefabs.Add(new PrefabInfo(BoxType.Boss, 0, 1, 100));
     }
 }

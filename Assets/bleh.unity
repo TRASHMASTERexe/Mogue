@@ -483,6 +483,7 @@ GameObject:
   - component: {fileID: 554631562}
   - component: {fileID: 554631563}
   - component: {fileID: 554631564}
+  - component: {fileID: 554631565}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -518,7 +519,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxContainer: {fileID: 1125956663}
-  enemyManager: {fileID: 554631563}
+  boxChanceManager: {fileID: 554631565}
+  enemyManager: {fileID: 0}
   itemManager: {fileID: 554631564}
 --- !u!114 &554631563
 MonoBehaviour:
@@ -532,8 +534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 745d712fdbb5aef42b8e196f0f791099, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyPrefab: {fileID: 0}
-  EnemyStorage: {fileID: 0}
+  EnemyPrefab: {fileID: 6962046214174207979, guid: aa4fe105025efe142a256e8ea41b5b4b, type: 3}
+  EnemyStorage: {fileID: 752136211}
 --- !u!114 &554631564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -547,6 +549,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemStorage: {fileID: 995879450}
+--- !u!114 &554631565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554631560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a60d1dc905859441a7220b0a6922004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &661587856
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd46295ebbf249a449366ba54a69cf4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyImage: {fileID: 21300000, guid: a0dd1a56e66754fc4887580637e1e1f2, type: 3}
 --- !u!1 &995879450
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,6 +675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e732ca49dd16c46a566073767b60a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: cf952c3e0f57246da9cc60ae0e5501ae, type: 3}
 --- !u!114 &995879452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -672,6 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae3ca8dd6ead7847928cd69adf1365f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: 9dde46eb5e29d40d7bfcfe0245d0377e, type: 3}
 --- !u!114 &995879453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -684,6 +701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9661b69295eef4744b6c96df784eb32a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: 40bac6161648b435ebb91acc7e3b9f95, type: 3}
 --- !u!114 &995879454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -696,6 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18a7bee509da6d42b4fe6267a7f1c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Sprite: {fileID: 21300000, guid: 52a59ea2342d94e02be3dbaef87780cc, type: 3}
 --- !u!4 &995879455
 Transform:
   m_ObjectHideFlags: 0
