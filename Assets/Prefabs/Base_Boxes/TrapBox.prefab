@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 1324193732543203930}
   - component: {fileID: 1324193732543203931}
   - component: {fileID: 1324193732543203932}
+  - component: {fileID: 634015095495920313}
   m_Layer: 5
   m_Name: TrapBox
   m_TagString: Untagged
@@ -163,6 +164,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &634015095495920313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1324193732543203934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c644d2244988c7d45b30aaa987c40ae1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2317366065386421034
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +264,7 @@ GameObject:
   - component: {fileID: 1650704601375898851}
   - component: {fileID: 7808328516940662092}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GoldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -881,7 +894,7 @@ GameObject:
   - component: {fileID: 7868691287205680435}
   - component: {fileID: 1503931488974024192}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SpdText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1244,7 +1257,7 @@ GameObject:
   - component: {fileID: 2470662332051393525}
   - component: {fileID: 570489296087640331}
   m_Layer: 5
-  m_Name: Text
+  m_Name: DmgText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

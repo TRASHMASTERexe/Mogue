@@ -11,19 +11,17 @@ public class GameManager : MonoBehaviour
     public GameObject boxContainer;
     public BoxChanceManager boxChanceManager;
     public EnemyManager enemyManager;
+    public TrapManager trapManager;
     public ItemManager itemManager;
     public static TMP_Text killCounter;
     public static TMP_Text worldName;
 
-
-
-
-
-
-    // Start is called before the first frame update
-    //maybe add a shake animation and boom sound effect on box creation
     void Start()
-    {   
+    {
+        Transform transform = boxContainer.transform;
+        enemyManager.Init(transform, itemManager);
+        trapManager.Init(transform, itemManager);
+
         for (int i = 0; i < 5; i++)
         {
             addPrefab();
@@ -42,13 +40,13 @@ public class GameManager : MonoBehaviour
         switch(boxType)
         {
             case BoxType.Enemy:
-                Item item = itemManager.rollItem();
-                Transform transform1 = boxContainer.transform;
-                enemyManager.InitEnemy(item, transform1);
+                enemyManager.InitEnemy();
                 break;
             case BoxType.Trap:
+                trapManager.InitTrap();
                 break;
             case BoxType.Merchant:
+                trapManager.InitTrap();
                 break;
             case BoxType.Boss:
                 break;
