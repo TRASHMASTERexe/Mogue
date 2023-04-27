@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 7046070709616854393}
   - component: {fileID: 4574890491993039619}
   m_Layer: 5
-  m_Name: Text
+  m_Name: SpdText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 6977705391181785731}
   - component: {fileID: 3198886285437860649}
   m_Layer: 5
-  m_Name: EnemyImage
+  m_Name: BossImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 8210368486934594791}
   - component: {fileID: 9195494342255513442}
   m_Layer: 5
-  m_Name: Text
+  m_Name: HpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -814,7 +814,7 @@ GameObject:
   - component: {fileID: 2679213042855996530}
   - component: {fileID: 2443609601074264617}
   m_Layer: 5
-  m_Name: Text
+  m_Name: DefText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1217,7 +1217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8604265980846986073}
   m_Layer: 5
-  m_Name: Power
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1257,7 +1257,7 @@ GameObject:
   - component: {fileID: 8522129074814364124}
   - component: {fileID: 3585635639047671056}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AtkText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1468,6 +1468,7 @@ GameObject:
   - component: {fileID: 6962046214174207983}
   - component: {fileID: 6962046214174207982}
   - component: {fileID: 6962046214174207977}
+  - component: {fileID: 8561872131965928628}
   m_Layer: 5
   m_Name: BossBox
   m_TagString: Untagged
@@ -1580,6 +1581,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8561872131965928628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6962046214174207979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb99e7e37f0007a4fa5f7c56ec0767ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7487110471689560880
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1605,7 @@ GameObject:
   - component: {fileID: 8247365402119690814}
   - component: {fileID: 3883281546860154534}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GoldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

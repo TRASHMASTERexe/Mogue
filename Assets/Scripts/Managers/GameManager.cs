@@ -12,21 +12,11 @@ public class GameManager : MonoBehaviour
     public BoxChanceManager boxChanceManager;
     public EnemyManager enemyManager;
     public TrapManager trapManager;
+    public MerchantManager merchantManager;
+    public BossManager bossManager;
     public ItemManager itemManager;
     public static TMP_Text killCounter;
     public static TMP_Text worldName;
-
-    void Start()
-    {
-        Transform transform = boxContainer.transform;
-        enemyManager.Init(transform, itemManager);
-        trapManager.Init(transform, itemManager);
-
-        for (int i = 0; i < 5; i++)
-        {
-            addPrefab();
-        }
-    }
 
     private void addPrefab()
     {
@@ -46,10 +36,29 @@ public class GameManager : MonoBehaviour
                 trapManager.InitTrap();
                 break;
             case BoxType.Merchant:
-                trapManager.InitTrap();
+                merchantManager.InitMerchant();
                 break;
             case BoxType.Boss:
+                bossManager.InitBoss();
                 break;
         }
+    }
+
+    //init game objects
+    private void Awake()
+    {
+        Transform transform = boxContainer.transform;
+        ManagerBase.Init(transform, itemManager);
+    }
+
+    //init play
+    void Start()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            addPrefab();
+        }
+
+        initBox(BoxType.Boss);
     }
 }

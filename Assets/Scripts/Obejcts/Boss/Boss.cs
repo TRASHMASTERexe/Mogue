@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Boss : MonoBehaviour
+public abstract class Boss : MonoBehaviour
 {
+    public Sprite bossImage;
+    public abstract int Atk { get; }
+    public abstract int Def { get; }
+    public abstract int Spd { get; }
+    public abstract int Hp { get; }
+    public abstract int Gold { get; }
+    public abstract int DifficultyLevel { get; }
 
-    private EnemyStatBlock statBlock;
-    
-    public Boss(int dmg, int def, int spd, int hp)
+    public BossStatBlock initBoss()
     {
-        this.statBlock = gameObject.AddComponent<EnemyStatBlock>();
-        statBlock.StatBlockConstructor(Target.Boss, dmg, def, spd, hp, 0);
+        BossStatBlock sb = gameObject.AddComponent<BossStatBlock>();
+        sb.StatBlockConstructor(Target.Enemy, Atk, Def, Spd, Hp, Gold);
+        return sb;
     }
 
     public void OnClick()
@@ -21,12 +28,12 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

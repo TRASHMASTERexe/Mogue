@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 8727588291386477392}
   - component: {fileID: 8727588291386477397}
   - component: {fileID: 8727588291386477399}
+  - component: {fileID: 533475454459239941}
   - component: {fileID: 8727588291386477398}
+  - component: {fileID: 7601132337464711001}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -36,6 +38,7 @@ Transform:
   - {fileID: 8727588291155114703}
   - {fileID: 8727588291139604512}
   - {fileID: 8727588291549323460}
+  - {fileID: 4406334420949651996}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -55,6 +58,8 @@ MonoBehaviour:
   boxChanceManager: {fileID: 8727588291386477398}
   enemyManager: {fileID: 8727588291386477392}
   trapManager: {fileID: 8727588291386477397}
+  merchantManager: {fileID: 533475454459239941}
+  bossManager: {fileID: 7601132337464711001}
   itemManager: {fileID: 8727588291386477399}
 --- !u!114 &8727588291386477392
 MonoBehaviour:
@@ -97,6 +102,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemStorage: {fileID: 8727588291549323457}
+--- !u!114 &533475454459239941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727588291386477395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144e88e9e30312b40950f892210203ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  merchantPrefab: {fileID: 1750516086166298194, guid: 051202c97789fa54f8de4c470c6b1211, type: 3}
+  merchantImage: {fileID: 21300000, guid: 1d54ab33461ad468a86a5cfa99949002, type: 3}
 --- !u!114 &8727588291386477398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +128,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a60d1dc905859441a7220b0a6922004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7601132337464711001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727588291386477395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ed79de3515ddd948bdb15fc8fdab16f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossPrefab: {fileID: 6962046214174207979, guid: d586b7e685fef874082b3ef4276a1f52, type: 3}
+  bossStorage: {fileID: 8821431425842144324}
+--- !u!1 &8821431425842144324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4406334420949651996}
+  - component: {fileID: 5365923704187022213}
+  m_Layer: 0
+  m_Name: BossStorage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4406334420949651996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8821431425842144324}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8727588291386477394}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5365923704187022213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8821431425842144324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fa154e76ed223428960e30d46401ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossImage: {fileID: 21300000, guid: 11ad93e3eed4cd445af71d5dc025c348, type: 3}
 --- !u!1001 &245128069712921291
 PrefabInstance:
   m_ObjectHideFlags: 0

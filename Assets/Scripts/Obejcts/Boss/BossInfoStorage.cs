@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrapInfoStorage : MonoBehaviour
+public class BossInfoStorage : MonoBehaviour
 {
-    public TrapStatBlock StatBlock { get; set; }
+    public BossStatBlock StatBlock { get; set; }
     public Item Item { get; set; }
 }

@@ -48,6 +48,16 @@ public class ItemManager : MonoBehaviour
         return items[Random.Range(0, items.Count - 1)];
     }
 
+    public List<Item> rollItems(int numItems)
+    {
+        List<Item> items = new List<Item>();
+        for(int i = 0; i< numItems; i++)
+        {
+            items.Add(rollItem());
+        }
+        return items;
+    }
+
     private void Awake()
     {
         ItemStorage.GetComponents<Item>().ToList().ForEach(item =>
