@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trap : MonoBehaviour
+public class Merchant : MonoBehaviour
 {
 
-    private StatBlock statBlock;
+    private EnemyStatBlock statBlock;
     
-    public Trap(int dmg, int def, int spd)
+    public Merchant(int dmg, int def, int spd)
     {
-        this.statBlock = gameObject.AddComponent<StatBlock>();
+        this.statBlock = gameObject.AddComponent<EnemyStatBlock>();
         //statBlock.StatBlockConstructor(Target.Enemy, dmg, def, spd);
     }
 

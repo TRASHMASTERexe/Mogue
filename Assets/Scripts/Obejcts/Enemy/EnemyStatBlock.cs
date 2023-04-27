@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatBlock : MonoBehaviour
+public class EnemyStatBlock : MonoBehaviour
 {
 
     public Target Target { get; private set; }

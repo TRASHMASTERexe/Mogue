@@ -52,7 +52,7 @@ public class ItemManager : MonoBehaviour
     {
         ItemStorage.GetComponents<Item>().ToList().ForEach(item =>
         {
-            Rarity rarity = item.rarity;
+            Rarity rarity = item.Rarity;
             if(difficultyToListPrefabs.ContainsKey(rarity))
             {
                 difficultyToListPrefabs.GetValueOrDefault(rarity).Add(item);
