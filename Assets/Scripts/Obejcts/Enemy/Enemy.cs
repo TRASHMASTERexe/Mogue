@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public abstract class Enemy : MonoBehaviour
 {
+    public Sprite enemyImage;
     public abstract int MinAtk { get; } 
     public abstract int MaxAtk { get; }
     public abstract int MinDef { get; }
@@ -16,16 +17,15 @@ public abstract class Enemy : MonoBehaviour
     public abstract int MinGold { get; }
     public abstract int MaxGold { get;}
     public abstract int DifficultyLevel { get;}
-    public abstract Image enemyImage { get; }
 
-    public StatBlock initEnemy()
+    public EnemyStatBlock initEnemy()
     {
         int atk = Random.Range(MinAtk, MaxAtk);
         int def = Random.Range(MinDef, MaxDef);
         int spd = Random.Range(MinSpd, MaxSpd);
         int hp = Random.Range(MinHp, MaxHp);
         int gold = Random.Range(MinGold, MaxGold);
-        StatBlock sb = gameObject.AddComponent<StatBlock>();
+        EnemyStatBlock sb = gameObject.AddComponent<EnemyStatBlock>();
         sb.StatBlockConstructor(Target.Enemy, atk, def, spd, hp, gold);
         return sb;
     }

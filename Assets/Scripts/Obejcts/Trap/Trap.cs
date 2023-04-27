@@ -2,15 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class Trap : MonoBehaviour
 {
 
-    private StatBlock statBlock;
+    private EnemyStatBlock statBlock;
     
-    public Boss(int dmg, int def, int spd, int hp)
+    public Trap(int dmg, int def, int spd)
     {
-        this.statBlock = gameObject.AddComponent<StatBlock>();
-        statBlock.StatBlockConstructor(Target.Boss, dmg, def, spd, hp, 0);
+        this.statBlock = gameObject.AddComponent<EnemyStatBlock>();
+        //statBlock.StatBlockConstructor(Target.Enemy, dmg, def, spd);
     }
 
     public void OnClick()

@@ -5,5 +5,5 @@ using UnityEngine.UI;
 
 public class EnemyInfoStorage : MonoBehaviour
 {
-    public StatBlock StatBlock { get; set; }
+    public EnemyStatBlock StatBlock { get; set; }
 }

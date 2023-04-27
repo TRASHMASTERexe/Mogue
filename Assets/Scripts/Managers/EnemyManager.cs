@@ -22,7 +22,7 @@ public class EnemyManager : MonoBehaviour
 
         List<Enemy> enemies = difficultyToListPrefabs.GetValueOrDefault(Random.Range(floor, ceiling));
         Enemy enemy = enemies[Random.Range(0, enemies.Count - 1)];
-        StatBlock stats = enemy.initEnemy();
+        EnemyStatBlock stats = enemy.initEnemy();
         TMP_Text[] tmp = EnemyPrefab.GetComponentsInChildren<TMP_Text>();
         tmp.Where(txt => txt.name.ToLower().StartsWith("atk")).FirstOrDefault().text = stats.Atk.ToString();
         tmp.Where(txt => txt.name.ToLower().StartsWith("def")).FirstOrDefault().text = stats.Def.ToString();
@@ -31,7 +31,7 @@ public class EnemyManager : MonoBehaviour
         tmp.Where(txt => txt.name.ToLower().StartsWith("gold")).FirstOrDefault().text = stats.Gold.ToString();
 
         Image[] images = EnemyPrefab.GetComponentsInChildren<Image>();
-        images.Where(txt => txt.name.ToLower().StartsWith("reward")).FirstOrDefault().sprite = Item.img;
+        images.Where(txt => txt.name.ToLower().StartsWith("reward")).FirstOrDefault().sprite = Item.Sprite;
 
         Instantiate(EnemyPrefab, t).GetComponent<EnemyInfoStorage>().StatBlock = stats;
 

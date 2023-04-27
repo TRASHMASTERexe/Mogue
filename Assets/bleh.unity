@@ -593,6 +593,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 752136212}
+  - component: {fileID: 752136213}
   m_Layer: 0
   m_Name: EnemyStorage
   m_TagString: Untagged
@@ -615,6 +616,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &752136213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 752136211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd46295ebbf249a449366ba54a69cf4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &995879450
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,9 +660,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e732ca49dd16c46a566073767b60a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img: {fileID: 21300000, guid: 99dff1874a9b944a28871c38c7dc5e84, type: 3}
-  rarity: 3
-  Target: 0
 --- !u!114 &995879452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,9 +672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae3ca8dd6ead7847928cd69adf1365f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img: {fileID: 21300000, guid: 9dde46eb5e29d40d7bfcfe0245d0377e, type: 3}
-  rarity: 2
-  Target: 0
 --- !u!114 &995879453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,9 +684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9661b69295eef4744b6c96df784eb32a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img: {fileID: 21300000, guid: 40bac6161648b435ebb91acc7e3b9f95, type: 3}
-  rarity: 1
-  Target: 0
 --- !u!114 &995879454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -692,9 +696,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18a7bee509da6d42b4fe6267a7f1c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  img: {fileID: 21300000, guid: 52a59ea2342d94e02be3dbaef87780cc, type: 3}
-  rarity: 0
-  Target: 0
 --- !u!4 &995879455
 Transform:
   m_ObjectHideFlags: 0

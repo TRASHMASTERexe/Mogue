@@ -16,6 +16,5 @@ public class Slime : Enemy
     public override int MinGold { get;} = 1;
     public override int MaxGold { get;} = 5;
     public override int DifficultyLevel { get;} = 1;
-    public override Image enemyImage { get; }
 
 }
