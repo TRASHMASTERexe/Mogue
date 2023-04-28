@@ -15,17 +15,25 @@ public class GameManager : MonoBehaviour
     public MerchantManager merchantManager;
     public BossManager bossManager;
     public ItemManager itemManager;
+    public PlayerManager playerManager;
     public static TMP_Text killCounter;
     public static TMP_Text worldName;
+    private static GameManager gameManagerReference;
 
-    private void addPrefab()
+
+    public static GameManager GetManager()
+    {
+        return gameManagerReference;
+    }
+
+    private void AddPrefab()
     {
         BoxType boxType = boxChanceManager.getRandomPrefab();
-        initBox(boxType);
+        InitBox(boxType);
         
     }
 
-    private void initBox(BoxType boxType)
+    private void InitBox(BoxType boxType)
     {
         switch(boxType)
         {
@@ -44,9 +52,31 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void InitCombat(BaseStatBlock statblock, Item prize)
+    {
+        if (playerManager.StartCombat(statblock))
+        {
+            playerManager.GivePlayer(prize);
+            //update gold statblokc.gold()
+            //update intenral kill count
+            //determine if kill increases difficulty
+            AddPrefab();
+        }
+        else
+        {
+            //gameOver
+        }
+    }
+
+    #region unity awake
     //init game objects
     private void Awake()
     {
+        if (gameManagerReference == null)
+        { 
+            gameManagerReference = this;
+        }
+
         Transform transform = boxContainer.transform;
         ManagerBase.Init(transform, itemManager);
     }
@@ -56,9 +86,10 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            addPrefab();
+            AddPrefab();
         }
 
-        initBox(BoxType.Boss);
+        InitBox(BoxType.Boss);
     }
+    #endregion
 }

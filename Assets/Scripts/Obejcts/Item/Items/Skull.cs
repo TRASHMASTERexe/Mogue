@@ -8,7 +8,7 @@ public class Skull : Item
     public override Rarity Rarity { get; } = Rarity.rare;
     public override Target Target { get; } = Target.Player;
 
-    public override void Effect(EnemyStatBlock statBlock)
+    public override void Effect()
     {
         throw new System.NotImplementedException();
     }

@@ -16,7 +16,7 @@ public abstract class Boss : MonoBehaviour
     public BossStatBlock initBoss()
     {
         BossStatBlock sb = gameObject.AddComponent<BossStatBlock>();
-        sb.StatBlockConstructor(Target.Enemy, Atk, Def, Spd, Hp, Gold);
+        sb.StatBlockConstructor(Atk, Def, Spd, Hp, Gold);
         return sb;
     }
 

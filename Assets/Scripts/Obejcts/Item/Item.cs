@@ -12,5 +12,5 @@ public abstract class Item : MonoBehaviour
     public abstract Rarity Rarity { get; }
     public abstract Target Target { get; }
 
-    public abstract void Effect(EnemyStatBlock statBlock);
+    public abstract void Effect();
 }

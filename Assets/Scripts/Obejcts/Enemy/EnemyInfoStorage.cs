@@ -7,4 +7,9 @@ public class EnemyInfoStorage : MonoBehaviour
 {
     public EnemyStatBlock StatBlock { get; set; }
     public Item Item { get; set; }
+
+    public void OnClick()
+    {
+        Debug.Log(StatBlock);
+    }
 }

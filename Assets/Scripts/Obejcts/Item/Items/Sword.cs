@@ -9,8 +9,8 @@ public class Sword : Item
     public override Rarity Rarity { get; } = Rarity.common;
     public override Target Target { get; } = Target.Player;
 
-    public override void Effect(EnemyStatBlock statBlock)
+    public override void Effect()
     {
-        throw new System.NotImplementedException();
+        GameManager.GetManager().updatePlayerStats();
     }
 }
