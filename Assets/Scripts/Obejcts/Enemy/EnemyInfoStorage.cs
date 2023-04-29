@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyInfoStorage : MonoBehaviour
+public class EnemyInfoStorage : AdversaryInfoStorage
 {
-    public EnemyStatBlock StatBlock { get; set; }
-    public Item Item { get; set; }
+    public EnemyStatBlock statBlock;
+    public override AdversaryStatBlock StatBlock { get => statBlock; set => statBlock = (EnemyStatBlock)value; }
 
     public void OnClick()
     {
-        Debug.Log(StatBlock);
+        GameManager.GetManager().InitCombat(statBlock, Item, Gold);
+        Destroy(parent);
     }
 }

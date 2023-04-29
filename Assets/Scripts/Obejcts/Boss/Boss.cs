@@ -16,24 +16,7 @@ public abstract class Boss : MonoBehaviour
     public BossStatBlock initBoss()
     {
         BossStatBlock sb = gameObject.AddComponent<BossStatBlock>();
-        sb.StatBlockConstructor(Atk, Def, Spd, Hp, Gold);
+        sb.StatBlockConstructor(Atk, Def, Spd, Hp);
         return sb;
-    }
-
-    public void OnClick()
-    {
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

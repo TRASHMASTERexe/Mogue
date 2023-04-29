@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,8 @@ using UnityEngine.UI;
 public class Player
 {
     public Sprite playerImage;
-    public PlayerStats PlayerStatBlock;
-    private Dictionary<Item, int> itemsToCount;
+    public PlayerStats PlayerStatBlock = new();
+    private Dictionary<Item, int> itemsToCount = new();
 
     internal void GiveItem(Item prize)
     {
@@ -21,6 +22,73 @@ public class Player
             itemsToCount.Add(prize, 1);
         }
 
-        prize.Effect();
+        List<StatChange> changes = new List<StatChange>();
+        //get player changes
+        itemsToCount.Where(entry => entry.Key.Target.Equals(Target.Player))
+            .Select(e => new { e.Key.statChanges, e.Value }).ToList().ForEach(e =>
+            {
+                for(int i = 0; i < e.Value; i++)
+                {
+                    changes.AddRange(e.statChanges);
+                }
+            });
+
+
+        PlayerStatBlock.ApplyItemEffects(changes);
+
+        //TODO apply changes to all other targets
+    }
+
+    internal void Fight(AdversaryStatBlock statBlock)
+    {
+
+        int enemyAtk = statBlock.StatToValue[Stat.Atk];
+        int enemyDef = statBlock.StatToValue[Stat.Def];
+        int enemySpd = statBlock.StatToValue[Stat.Spd];
+        int enemyHp = statBlock.StatToValue[Stat.HP];
+
+        int playerAtk = PlayerStatBlock.GetCalculatedStat(Stat.Atk);
+        int playerDef = PlayerStatBlock.GetCalculatedStat(Stat.Def);
+        int playerSpd = PlayerStatBlock.GetCalculatedStat(Stat.Spd);
+        int playerHp = PlayerStatBlock.GetCalculatedStat(Stat.HP);
+
+        //combat
+        bool bothAlive = true;
+        int turnNum = 1;
+
+        while (bothAlive){ 
+            if(turnNum % playerSpd == 0)
+            {
+                int damageCalc = playerAtk - enemyDef >= 0 ? playerAtk - enemyDef : 0;
+                enemyHp -= damageCalc;
+            }
+
+            if(enemyHp <= 0)
+            {
+                bothAlive = false;
+                continue;
+            }
+
+            if (turnNum % enemySpd == 0)
+            {
+                int damageCalc = enemyAtk - playerDef >= 0 ? enemyAtk - playerDef : 0;
+                playerHp -= damageCalc;
+            }
+
+            if (playerHp <= 0)
+            {
+                bothAlive = false;
+                continue;
+            }
+
+            turnNum++;
+        };
+
+        PlayerStatBlock.SetHp(playerHp);
+    }
+
+    public void UpdateUI()
+    {
+
     }
 }

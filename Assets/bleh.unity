@@ -123,6 +123,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &119358809 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8727588291386477395, guid: 8370ed9f96744b94c93c974d50032c9c, type: 3}
+  m_PrefabInstance: {fileID: 8727588290833418971}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &119358819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119358809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2849f702e4792254083f1ce7b79a0d71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statBar: {fileID: 1904823342}
+  headerBar: {fileID: 956717874}
 --- !u!1 &201237446
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +527,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -144}
   m_SizeDelta: {x: 1920, y: 2700}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &956717874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6858294507717139511, guid: 03e96df9a19a7144c996d0147668112b, type: 3}
+  m_PrefabInstance: {fileID: 8080044421834321500}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1125956663
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,19 +781,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerStats
       objectReference: {fileID: 0}
-    - target: {fileID: 2979939304688664631, guid: 9bda0a3aa4cd09742bdfb61184002d2a, type: 3}
+    - target: {fileID: 6743059286451144524, guid: 9bda0a3aa4cd09742bdfb61184002d2a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2979939304688664631, guid: 9bda0a3aa4cd09742bdfb61184002d2a, type: 3}
+    - target: {fileID: 6743059286451144524, guid: 9bda0a3aa4cd09742bdfb61184002d2a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6743059286451144524, guid: 9bda0a3aa4cd09742bdfb61184002d2a, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6743059286451144524, guid: 9bda0a3aa4cd09742bdfb61184002d2a, type: 3}
+    - target: {fileID: 8503208559494710282, guid: 9bda0a3aa4cd09742bdfb61184002d2a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -997,6 +1017,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1904823342 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1750516086166298194, guid: 9bda0a3aa4cd09742bdfb61184002d2a, type: 3}
+  m_PrefabInstance: {fileID: 1423344950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3391099554193584744 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6858294507717139508, guid: 03e96df9a19a7144c996d0147668112b, type: 3}
@@ -1118,6 +1143,10 @@ PrefabInstance:
       propertyPath: boxContainer
       value: 
       objectReference: {fileID: 1125956663}
+    - target: {fileID: 8727588291386477393, guid: 8370ed9f96744b94c93c974d50032c9c, type: 3}
+      propertyPath: playerManager
+      value: 
+      objectReference: {fileID: 119358819}
     - target: {fileID: 8727588291386477394, guid: 8370ed9f96744b94c93c974d50032c9c, type: 3}
       propertyPath: m_RootOrder
       value: 3

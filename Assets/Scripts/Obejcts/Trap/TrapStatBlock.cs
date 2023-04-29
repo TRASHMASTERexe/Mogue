@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapStatBlock : BaseStatBlock
+public class TrapStatBlock : AdversaryStatBlock
 {
 
-    public void StatBlockConstructor(int atk, int spd, int gold)
+    public void StatBlockConstructor(int atk, int spd)
     {
-        Atk = atk;
-        Spd = spd;
-        Gold = gold;
+        StatToValue[Stat.Atk] = atk;
+        StatToValue[Stat.Spd] = spd;
     }
 }

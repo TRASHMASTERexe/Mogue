@@ -23,17 +23,15 @@ public class TrapManager : ManagerBase
         Image[] images = go.GetComponentsInChildren<Image>();
         TrapInfoStorage trapInfoStorage = go.GetComponent<TrapInfoStorage>();
 
+        trapInfoStorage.StatBlock = trap.initTrap();
+        tmps.Where(txt => txt.name.ToLower().StartsWith("dmgtext")).FirstOrDefault().text = trapInfoStorage.StatBlock.StatToValue[Stat.Atk].ToString();
+        tmps.Where(txt => txt.name.ToLower().StartsWith("spdtext")).FirstOrDefault().text = trapInfoStorage.StatBlock.StatToValue[Stat.Spd].ToString();
 
-        TrapStatBlock stats = trap.initTrap();
-        tmps.Where(txt => txt.name.ToLower().StartsWith("dmgtext")).FirstOrDefault().text = stats.Dmg.ToString();
-        tmps.Where(txt => txt.name.ToLower().StartsWith("spdtext")).FirstOrDefault().text = stats.Spd.ToString();
-        tmps.Where(txt => txt.name.ToLower().StartsWith("goldtext")).FirstOrDefault().text = stats.Gold.ToString();
-        trapInfoStorage.StatBlock = stats;
+        trapInfoStorage.Gold = trap.CalcGold();
+        tmps.Where(txt => txt.name.ToLower().StartsWith("goldtext")).FirstOrDefault().text = trapInfoStorage.Gold.ToString();
 
-        Item item = itemManager.rollItem();
-        images.Where(txt => txt.name.ToLower().StartsWith("rewardimage")).FirstOrDefault().sprite = item.Sprite;
-        trapInfoStorage.Item = item;
-
+        trapInfoStorage.Item = itemManager.rollItem();
+        images.Where(txt => txt.name.ToLower().StartsWith("rewardimage")).FirstOrDefault().sprite = trapInfoStorage.Item.Sprite;
 
         images.Where(txt => txt.name.ToLower().StartsWith("trapimage")).FirstOrDefault().sprite = trap.TrapImage;
 

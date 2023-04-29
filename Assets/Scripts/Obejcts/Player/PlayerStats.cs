@@ -5,43 +5,63 @@ using UnityEngine;
 
 public class PlayerStats
 {
-    private readonly Dictionary<Stat, int> stats = new Dictionary<Stat, int>()
+    private readonly Dictionary<Stat, double> calculatedStats = new()
     {
         { Stat.Atk, 5 },
         { Stat.Def, 3 },
-        { Stat.Spd, 1 },
+        { Stat.Spd, 100 },
         { Stat.HP, 100 },
-        { Stat.Exp, 0 },
         { Stat.MaxHP, 100 },
+    };
+
+    private Dictionary<Stat, double> baseStats = new()
+    {
+        { Stat.Atk, 5 },
+        { Stat.Def, 3 },
+        { Stat.Spd, 100 },
+        { Stat.MaxHP, 100 },
+    };
+
+    private Dictionary<Stat, double> constantStats = new()
+    {
+        { Stat.Exp, 0 },
         { Stat.MaxExp, 10 },
         { Stat.Level, 1 }
     };
 
     private readonly int maxLvl = 99;
-    private int curLevel = 1;
     public int skillPoints = 0;
 
-    public ChangeType changeType;
-
-    public PlayerStats UpdateStatsAllItems(List<StatChange> changes, int curLevel, int curExpBase)
+    public void ApplyItemEffects(List<StatChange> changes)
     {
-        PlayerStats newStats = new();
-        newStats.SetCurLevel(curLevel);
-        newStats.DetermineMaxExp(curLevel);
-        newStats.SetExpBase(curExpBase);
+        CleanStats();
 
         changes.FindAll(change => change.changeType != ChangeType.Multiply)
             .ForEach(change => {
-                newStats.UpdateStat(change);
+                UpdateStat(change);
             });
         changes.FindAll(change => change.changeType == ChangeType.Multiply)
             .ForEach(change => {
-                newStats.UpdateStat(change);
+                UpdateStat(change);
             });
 
-        newStats.AdjustStatsToMax();
+        AdjustStatsToMax();
+    }
 
-        return newStats;
+    internal int GetCalculatedStat(Stat stat)
+    {
+        return (int)calculatedStats[stat];
+    }
+
+    private void CleanStats()
+    {
+        foreach(Stat stat in baseStats.Keys)
+        {
+            if (calculatedStats.ContainsKey(stat))
+            {
+                calculatedStats[stat] = baseStats[stat];
+            }
+        }
     }
 
     public void UpdateStat(StatChange change)
@@ -49,102 +69,98 @@ public class PlayerStats
         switch(change.changeType)
         {
             case ChangeType.Add:
-                stats[change.stat] += change.changeAmt;
+                calculatedStats[change.stat] += change.changeAmt;
                 break;
             case ChangeType.Subtract:
-                stats[change.stat] -= change.changeAmt;
+                calculatedStats[change.stat] -= change.changeAmt;
                 break;
             case ChangeType.Multiply:
-                stats[change.stat] *= change.changeAmt;
+                calculatedStats[change.stat] *= change.changeAmt;
+                break;
+            case ChangeType.Divide:
+                calculatedStats[change.stat] /= change.changeAmt;
                 break;
         }
     }
 
-    private void SetExpBase(int curExpBase)
+    internal void SetHp(int playerHp)
     {
-        stats[Stat.Exp] = curExpBase;
+        calculatedStats[Stat.HP] = playerHp;
     }
 
-    private void SetCurLevel(int curLevel)
+    public void rewardExp(int exp)
     {
-        stats[Stat.Level] = curLevel;
-    }
+        constantStats[Stat.Exp] += exp;
 
-    private void DetermineMaxExp(int curLevel)
-    {
-        for(int i = 9; i >= 0; i--)
-        {
-            int v = i * 10;
-            if (curLevel > v)
-            {
-                stats[Stat.MaxExp] += (i+1 * (curLevel - (v)));
-                curLevel = v;
-            }
-        }
-    }
-
-
-    public void AdjustStatsToMax()
-    {
-        if(stats[Stat.HP] > stats[Stat.MaxHP])
-        {
-            stats[Stat.HP] = stats[Stat.MaxHP];
-        }
-        else if (stats[Stat.HP] < 1)
-        {
-            stats[Stat.HP] = 1;
-        }
-
-        while (stats[Stat.Exp] > stats[Stat.MaxExp])
+        if(constantStats[Stat.Exp] >= constantStats[Stat.MaxExp])
         {
             LevelUp();
         }
     }
-
-    public void LevelUp()
+    private void AdjustStatsToMax()
     {
-        if (curLevel < maxLvl)
+        if(calculatedStats[Stat.HP] > calculatedStats[Stat.MaxHP])
         {
-            stats[Stat.Exp] -= stats[Stat.MaxExp];
-            stats[Stat.Level] += 1;
-            skillPoints++;
-            curLevel++;
+            calculatedStats[Stat.HP] = calculatedStats[Stat.MaxHP];
+        }
 
-            switch (curLevel / 10)
+        if(calculatedStats[Stat.Spd] <= 1)
+        {
+            calculatedStats[Stat.Spd] = 1;
+        }
+    }
+
+    private void LevelUp()
+    {
+        if (constantStats[Stat.Level] < maxLvl)
+        {
+            constantStats[Stat.Exp] -= constantStats[Stat.MaxExp];
+            constantStats[Stat.Level] += 1;
+            skillPoints++;
+            baseStats[Stat.MaxHP] += 20;
+            calculatedStats[Stat.MaxHP] = baseStats[Stat.MaxHP];
+            calculatedStats[Stat.HP] = baseStats[Stat.MaxHP];
+
+            switch (constantStats[Stat.Level] / 10)
             {
                 case 0:
-                    stats[Stat.MaxExp] += 1;
+                    constantStats[Stat.MaxExp] += 1;
                     break;
                 case 1:
-                    stats[Stat.MaxExp] += 2;
+                    constantStats[Stat.MaxExp] += 2;
                     break;
                 case 2:
-                    stats[Stat.MaxExp] += 3;
+                    constantStats[Stat.MaxExp] += 3;
                     break;
                 case 3:
-                    stats[Stat.MaxExp] += 4;
+                    constantStats[Stat.MaxExp] += 4;
                     break;
                 case 4:
-                    stats[Stat.MaxExp] += 5;
+                    constantStats[Stat.MaxExp] += 5;
                     break;
                 case 5:
-                    stats[Stat.MaxExp] += 6;
+                    constantStats[Stat.MaxExp] += 6;
                     break;
                 case 6:
-                    stats[Stat.MaxExp] += 7;
+                    constantStats[Stat.MaxExp] += 7;
                     break;
                 case 7:
-                    stats[Stat.MaxExp] += 8;
+                    constantStats[Stat.MaxExp] += 8;
                     break;
                 case 8:
-                    stats[Stat.MaxExp] += 9;
+                    constantStats[Stat.MaxExp] += 9;
                     break;
                 case 9:
-                    stats[Stat.MaxExp] += 10;
+                    constantStats[Stat.MaxExp] += 10;
                     break;
 
             }
         }
-        stats[Stat.Exp] = stats[Stat.MaxExp];
+        else
+        {
+            constantStats[Stat.Exp] = constantStats[Stat.MaxExp];
+        }
+
+        //recalc stats
     }
 }

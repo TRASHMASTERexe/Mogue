@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 1525217089298631007}
   - component: {fileID: 8462093822484136750}
   m_Layer: 5
-  m_Name: Text
+  m_Name: difficultyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 105817021231391933}
   - component: {fileID: 8770442065276121290}
   m_Layer: 5
-  m_Name: Text
+  m_Name: goldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -712,7 +712,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4571431173710698016}
   m_Layer: 5
-  m_Name: kills
+  m_Name: difficulty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

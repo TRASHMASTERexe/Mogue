@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossStatBlock : BaseStatBlock
+public class BossStatBlock : AdversaryStatBlock
 {
-    public void StatBlockConstructor(int atk, int def, int spd, int hp, int gold)
+    public void StatBlockConstructor(int atk, int def, int spd, int hp)
     {
-        Atk = atk;
-        Spd = spd;
-        Def = def;
-        Hp = hp;
-        Gold = gold;
+        StatToValue[Stat.Atk] = atk;
+        StatToValue[Stat.Spd] = spd;
+        StatToValue[Stat.Def] = def;
+        StatToValue[Stat.HP] = hp;
     }
 }

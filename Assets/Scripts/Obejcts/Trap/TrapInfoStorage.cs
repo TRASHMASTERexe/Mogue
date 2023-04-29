@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TrapInfoStorage : MonoBehaviour
+public class TrapInfoStorage : AdversaryInfoStorage
 {
-    public TrapStatBlock StatBlock { get; set; }
-    public Item Item { get; set; }
+    public TrapStatBlock statBlock;
+    public override AdversaryStatBlock StatBlock { get => statBlock; set => statBlock = (TrapStatBlock)value; }
 }

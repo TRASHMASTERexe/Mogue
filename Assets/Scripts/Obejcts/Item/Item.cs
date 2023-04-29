@@ -11,6 +11,6 @@ public abstract class Item : MonoBehaviour
     public abstract string ItemName { get;}
     public abstract Rarity Rarity { get; }
     public abstract Target Target { get; }
-
+    public abstract List<StatChange> statChanges { get; }
     public abstract void Effect();
 }

@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
     public static TMP_Text killCounter;
     public static TMP_Text worldName;
     private static GameManager gameManagerReference;
-
-
     public static GameManager GetManager()
     {
         return gameManagerReference;
@@ -52,14 +50,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void InitCombat(BaseStatBlock statblock, Item prize)
+    public void InitCombat(AdversaryStatBlock statblock, Item prize, int gold)
     {
         if (playerManager.StartCombat(statblock))
         {
-            playerManager.GivePlayer(prize);
-            //update gold statblokc.gold()
-            //update intenral kill count
-            //determine if kill increases difficulty
+            playerManager.GivePlayer(prize, gold);
+
             AddPrefab();
         }
         else

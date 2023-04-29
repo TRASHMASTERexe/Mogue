@@ -5,10 +5,10 @@ using UnityEngine;
 public enum Stat
 {
     Atk,
-    HP,
     Exp,
     Def,
     Spd,
+    HP,
     MaxHP,
     MaxExp,
     Level

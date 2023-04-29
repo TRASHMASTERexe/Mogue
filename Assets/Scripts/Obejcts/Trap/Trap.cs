@@ -19,14 +19,12 @@ public abstract class Trap : MonoBehaviour
     {
         int dmg = Random.Range(MinDmg, MaxDmg);
         int spd = Random.Range(MinSpd, MaxSpd);
-        int gold = Random.Range(MinGold, MaxGold);
         TrapStatBlock sb = gameObject.AddComponent<TrapStatBlock>();
-        sb.StatBlockConstructor(Target.Enemy, dmg, spd, gold);
+        sb.StatBlockConstructor(dmg, spd);
         return sb;
     }
-
-    public void OnClick()
+    public int CalcGold()
     {
-
+        return Random.Range(MinGold, MaxGold);
     }
 }

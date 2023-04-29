@@ -6,5 +6,6 @@ public enum ChangeType
 {
     Add,
     Subtract,
-    Multiply
+    Multiply,
+    Divide
 }

@@ -12,6 +12,9 @@ public class BossManager : ManagerBase
     public GameObject bossStorage;
     private readonly Dictionary<int, List<Boss>> difficultyToListBoss = new();
 
+    //list of instantiated blocks
+    private List<BossInfoStorage> bossInfoStorages = new();
+
     public void InitBoss()
     {
         List<Boss> enemies = difficultyToListBoss.GetValueOrDefault(CalcDifficultyNum());
@@ -22,19 +25,21 @@ public class BossManager : ManagerBase
         Image[] images = go.GetComponentsInChildren<Image>();
         BossInfoStorage bossInfoStorage = go.GetComponent<BossInfoStorage>();
 
-        BossStatBlock stats = boss.initBoss();
-        tmps.Where(txt => txt.name.ToLower().StartsWith("atktext")).FirstOrDefault().text = stats.Atk.ToString();
-        tmps.Where(txt => txt.name.ToLower().StartsWith("deftext")).FirstOrDefault().text = stats.Def.ToString();
-        tmps.Where(txt => txt.name.ToLower().StartsWith("spdtext")).FirstOrDefault().text = stats.Spd.ToString();
-        tmps.Where(txt => txt.name.ToLower().StartsWith("hptext")).FirstOrDefault().text = stats.Hp.ToString();
-        tmps.Where(txt => txt.name.ToLower().StartsWith("goldtext")).FirstOrDefault().text = stats.Gold.ToString();
-        bossInfoStorage.StatBlock = stats;
+        bossInfoStorage.StatBlock = boss.initBoss();
+        tmps.Where(txt => txt.name.ToLower().StartsWith("atktext")).FirstOrDefault().text = bossInfoStorage.StatBlock.StatToValue[Stat.Atk].ToString();
+        tmps.Where(txt => txt.name.ToLower().StartsWith("deftext")).FirstOrDefault().text = bossInfoStorage.StatBlock.StatToValue[Stat.Def].ToString();
+        tmps.Where(txt => txt.name.ToLower().StartsWith("spdtext")).FirstOrDefault().text = bossInfoStorage.StatBlock.StatToValue[Stat.Spd].ToString();
+        tmps.Where(txt => txt.name.ToLower().StartsWith("hptext")).FirstOrDefault().text = bossInfoStorage.StatBlock.StatToValue[Stat.HP].ToString();
 
-        Item item = itemManager.rollItem();
-        images.Where(txt => txt.name.ToLower().StartsWith("rewardimage")).FirstOrDefault().sprite = item.Sprite;
-        bossInfoStorage.Item = item;
+        bossInfoStorage.Item = itemManager.rollItem();
+        images.Where(txt => txt.name.ToLower().StartsWith("rewardimage")).FirstOrDefault().sprite = bossInfoStorage.Item.Sprite;
+
+        bossInfoStorage.Gold = boss.Gold;
+        tmps.Where(txt => txt.name.ToLower().StartsWith("goldtext")).FirstOrDefault().text = bossInfoStorage.Gold.ToString();
 
         images.Where(txt => txt.name.ToLower().StartsWith("bossimage")).FirstOrDefault().sprite = boss.bossImage;
+
+        bossInfoStorages.Add(bossInfoStorage);
     }
 
     private void Awake()

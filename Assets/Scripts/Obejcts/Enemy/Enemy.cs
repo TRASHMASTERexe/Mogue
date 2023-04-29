@@ -24,26 +24,13 @@ public abstract class Enemy : MonoBehaviour
         int def = Random.Range(MinDef, MaxDef);
         int spd = Random.Range(MinSpd, MaxSpd);
         int hp = Random.Range(MinHp, MaxHp);
-        int gold = Random.Range(MinGold, MaxGold);
         EnemyStatBlock sb = gameObject.AddComponent<EnemyStatBlock>();
-        sb.StatBlockConstructor(Target.Enemy, atk, def, spd, hp, gold);
+        sb.StatBlockConstructor(atk, def, spd, hp);
         return sb;
     }
 
-    public void OnClick()
+    public int CalcGold()
     {
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return Random.Range(MinGold, MaxGold);
     }
 }

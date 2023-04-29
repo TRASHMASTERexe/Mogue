@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossInfoStorage : MonoBehaviour
+public class BossInfoStorage : AdversaryInfoStorage
 {
-    public BossStatBlock StatBlock { get; set; }
-    public Item Item { get; set; }
+    public BossStatBlock statBlock;
+    public override AdversaryStatBlock StatBlock { get => statBlock; set => statBlock = (BossStatBlock) value; }
 }
