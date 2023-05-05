@@ -9,7 +9,7 @@ public class PlayerStats
     {
         { Stat.Atk, 5 },
         { Stat.Def, 3 },
-        { Stat.Spd, 100 },
+        { Stat.Spd, 1 },
         { Stat.HP, 100 },
         { Stat.MaxHP, 100 },
     };
@@ -18,7 +18,7 @@ public class PlayerStats
     {
         { Stat.Atk, 5 },
         { Stat.Def, 3 },
-        { Stat.Spd, 100 },
+        { Stat.Spd, 1 },
         { Stat.MaxHP, 100 },
     };
 
@@ -48,9 +48,30 @@ public class PlayerStats
         AdjustStatsToMax();
     }
 
-    internal int GetCalculatedStat(Stat stat)
+    internal int GetStat(Stat stat)
     {
-        return (int)calculatedStats[stat];
+        switch(stat)
+        {
+            case Stat.Atk:
+                return (int)calculatedStats[stat];
+            case Stat.Def:
+                return (int)calculatedStats[stat];
+            case Stat.Spd:
+                return (int)calculatedStats[stat];
+            case Stat.MaxHP:
+                return (int)calculatedStats[stat];
+            case Stat.HP:
+                return (int)calculatedStats[stat];
+            case Stat.MaxExp:
+                return (int)constantStats[stat];
+            case Stat.Exp:
+                return (int)constantStats[stat];
+            case Stat.Level:
+                return (int)constantStats[stat];
+            default:
+                return 0;
+        }
+        
     }
 
     private void CleanStats()
@@ -107,6 +128,21 @@ public class PlayerStats
         if(calculatedStats[Stat.Spd] <= 1)
         {
             calculatedStats[Stat.Spd] = 1;
+        }
+
+        if (calculatedStats[Stat.Atk] > 9999)
+        {
+            calculatedStats[Stat.Atk] = 9999;
+        }
+
+        if (calculatedStats[Stat.Def] > 9999)
+        {
+            calculatedStats[Stat.Def] = 9999;
+        }
+
+        if (calculatedStats[Stat.Spd] > 9999)
+        {
+            calculatedStats[Stat.Spd] = 9999;
         }
     }
 

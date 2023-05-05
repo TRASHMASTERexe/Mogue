@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         return gameManagerReference;
     }
 
-    private void AddPrefab()
+    public void AddBox()
     {
         BoxType boxType = boxChanceManager.getRandomPrefab();
         InitBox(boxType);
@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void InitBox(BoxType boxType)
     {
+        //keep list of gameobjects?
         switch(boxType)
         {
             case BoxType.Enemy:
@@ -50,18 +51,42 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void InitCombat(AdversaryStatBlock statblock, Item prize, int gold)
+    public void InitCombatInteraction(AdversaryStatBlock statblock, Item prize, int gold)
     {
         if (playerManager.StartCombat(statblock))
         {
             playerManager.GivePlayer(prize, gold);
 
-            AddPrefab();
+            AddBox();
         }
         else
         {
             //gameOver
         }
+    }
+
+    public void InitTrapInteraction(TrapStatBlock statblock, Item prize, int gold)
+    {
+        if (playerManager.StartTrapSequence(statblock))
+        {
+            playerManager.GivePlayer(prize, gold);
+
+            AddBox();
+        }
+        else
+        {
+            //gameOver
+        }
+    }
+
+    public bool InitShopInteraction(ShopItem shopItem)
+    {
+        if(playerManager.Buy(shopItem))
+        {
+            AddBox();
+            return true;
+        }
+        return false;
     }
 
     #region unity awake
@@ -80,12 +105,10 @@ public class GameManager : MonoBehaviour
     //init play
     void Start()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 8; i++)
         {
-            AddPrefab();
+            AddBox();
         }
-
-        InitBox(BoxType.Boss);
     }
     #endregion
 }

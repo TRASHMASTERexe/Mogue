@@ -42,7 +42,7 @@ public class BoxChanceManager : MonoBehaviour
 
     private void Awake()
     {
-        prefabs.Add(new PrefabInfo(BoxType.Merchant, 20, 3, 50));
+        prefabs.Add(new PrefabInfo(BoxType.Merchant, 10, 2, 50));
         prefabs.Add(new PrefabInfo(BoxType.Trap, 20, 3, 50));
         prefabs.Add(new PrefabInfo(BoxType.Boss, 0, 1, 100));
     }

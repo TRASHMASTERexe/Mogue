@@ -7,4 +7,10 @@ public class TrapInfoStorage : AdversaryInfoStorage
 {
     public TrapStatBlock statBlock;
     public override AdversaryStatBlock StatBlock { get => statBlock; set => statBlock = (TrapStatBlock)value; }
+
+    public void OnClick()
+    {
+        GameManager.GetManager().InitTrapInteraction(statBlock, Item, Gold);
+        Destroy(parent);
+    }
 }

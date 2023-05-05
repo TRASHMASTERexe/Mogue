@@ -13,15 +13,15 @@ public class ItemManager : MonoBehaviour
     private Dictionary<Rarity, List<Item>> difficultyToListPrefabs = new();
     private Dictionary<Rarity, int> RarityToChance = new Dictionary<Rarity, int>()
     {
-        {Rarity.uncommon, 85},
-        {Rarity.rare, 99 },
-        {Rarity.mythic, 100}
+        {Rarity.uncommon, 750},
+        {Rarity.rare, 950 },
+        {Rarity.mythic, 1000}
     };
 
     public Item rollItem()
     {
 
-        int roll = Random.Range(1, 100);
+        int roll = Random.Range(1, 1001);
         int u = RarityToChance.GetValueOrDefault(Rarity.uncommon);
         int r = RarityToChance.GetValueOrDefault(Rarity.rare);
         int m = RarityToChance.GetValueOrDefault(Rarity.mythic);

@@ -15,7 +15,7 @@ public class EnemyManager : ManagerBase
     public void InitEnemy()
     {
         List<Enemy> enemies = difficultyToListEnemy.GetValueOrDefault(CalcDifficultyNum());
-        Enemy enemy = enemies[Random.Range(0, enemies.Count - 1)];
+        Enemy enemy = enemies[Random.Range(0, enemies.Count)];
         
         GameObject go = Instantiate(enemyPrefab, contentBoxTransform);
         TMP_Text[] tmps = go.GetComponentsInChildren<TMP_Text>();

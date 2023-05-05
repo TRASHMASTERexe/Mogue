@@ -17,8 +17,8 @@ public abstract class Trap : MonoBehaviour
 
     public TrapStatBlock initTrap()
     {
-        int dmg = Random.Range(MinDmg, MaxDmg);
-        int spd = Random.Range(MinSpd, MaxSpd);
+        int dmg = Random.Range(MinDmg, MaxDmg+1);
+        int spd = Random.Range(MinSpd, MaxSpd+1);
         TrapStatBlock sb = gameObject.AddComponent<TrapStatBlock>();
         sb.StatBlockConstructor(dmg, spd);
         return sb;

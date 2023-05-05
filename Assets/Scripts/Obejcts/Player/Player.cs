@@ -44,13 +44,13 @@ public class Player
 
         int enemyAtk = statBlock.StatToValue[Stat.Atk];
         int enemyDef = statBlock.StatToValue[Stat.Def];
-        int enemySpd = statBlock.StatToValue[Stat.Spd];
+        int enemySpd = 1000 / statBlock.StatToValue[Stat.Spd];
         int enemyHp = statBlock.StatToValue[Stat.HP];
 
-        int playerAtk = PlayerStatBlock.GetCalculatedStat(Stat.Atk);
-        int playerDef = PlayerStatBlock.GetCalculatedStat(Stat.Def);
-        int playerSpd = PlayerStatBlock.GetCalculatedStat(Stat.Spd);
-        int playerHp = PlayerStatBlock.GetCalculatedStat(Stat.HP);
+        int playerAtk = PlayerStatBlock.GetStat(Stat.Atk);
+        int playerDef = PlayerStatBlock.GetStat(Stat.Def);
+        int playerSpd = 1000 / PlayerStatBlock.GetStat(Stat.Spd);
+        int playerHp = PlayerStatBlock.GetStat(Stat.HP);
 
         //combat
         bool bothAlive = true;
@@ -85,6 +85,14 @@ public class Player
         };
 
         PlayerStatBlock.SetHp(playerHp);
+    }
+
+    internal void Evade(TrapStatBlock statBlock)
+    {
+       if(statBlock.StatToValue[Stat.Spd] > PlayerStatBlock.GetStat(Stat.Spd))
+        {
+            PlayerStatBlock.SetHp(PlayerStatBlock.GetStat(Stat.HP) - statBlock.StatToValue[Stat.Atk]);
+        }
     }
 
     public void UpdateUI()

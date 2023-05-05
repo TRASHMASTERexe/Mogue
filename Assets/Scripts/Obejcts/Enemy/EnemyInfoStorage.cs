@@ -10,7 +10,7 @@ public class EnemyInfoStorage : AdversaryInfoStorage
 
     public void OnClick()
     {
-        GameManager.GetManager().InitCombat(statBlock, Item, Gold);
+        GameManager.GetManager().InitCombatInteraction(statBlock, Item, Gold);
         Destroy(parent);
     }
 }

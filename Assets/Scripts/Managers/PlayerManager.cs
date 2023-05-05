@@ -28,7 +28,7 @@ public class PlayerManager : MonoBehaviour
 
         PlayerStats ps = player.PlayerStatBlock;
 
-        if (ps.GetCalculatedStat(Stat.HP) <= 0)
+        if (ps.GetStat(Stat.HP) <= 0)
         {
             return false;
         }
@@ -44,9 +44,14 @@ public class PlayerManager : MonoBehaviour
         return true;
     }
 
+    internal void GivePlayer(Item prize)
+    {
+        GivePlayer(prize, 0);
+    }
+
     internal void GivePlayer(Item prize, int gold)
     {
-        gold += gold;
+        this.gold += gold;
         player.GiveItem(prize);
         UpdateUI();
     }
@@ -58,16 +63,48 @@ public class PlayerManager : MonoBehaviour
 
         PlayerStats ps = player.PlayerStatBlock;
 
-        texts.Where(t => t.name.ToLower().StartsWith("atktext")).FirstOrDefault().text = ps.GetCalculatedStat(Stat.Atk).ToString();
-        texts.Where(t => t.name.ToLower().StartsWith("deftext")).FirstOrDefault().text = ps.GetCalculatedStat(Stat.Def).ToString();
-        texts.Where(t => t.name.ToLower().StartsWith("spdtext")).FirstOrDefault().text = ps.GetCalculatedStat(Stat.Spd).ToString();
+        texts.Where(t => t.name.ToLower().StartsWith("atktext")).FirstOrDefault().text = ps.GetStat(Stat.Atk).ToString();
+        texts.Where(t => t.name.ToLower().StartsWith("deftext")).FirstOrDefault().text = ps.GetStat(Stat.Def).ToString();
+        texts.Where(t => t.name.ToLower().StartsWith("spdtext")).FirstOrDefault().text = ps.GetStat(Stat.Spd).ToString();
         texts.Where(t => t.name.ToLower().StartsWith("goldtext")).FirstOrDefault().text = gold.ToString();
         texts.Where(t => t.name.ToLower().StartsWith("difficultytext")).FirstOrDefault().text = difficulty.ToString();
 
-        Slider hpbar = statBar.GetComponentInChildren<Slider>();
-        hpbar.maxValue = ps.GetCalculatedStat(Stat.MaxHP);
-        hpbar.value = ps.GetCalculatedStat(Stat.HP);
-        texts.Where(t => t.name.ToLower().StartsWith("hptext")).FirstOrDefault().text = hpbar.value + "/" + hpbar.maxValue;
+        List<Slider> bars = statBar.GetComponentsInChildren<Slider>().ToList();
+        Slider hpBar = bars.Where(b => b.name.ToLower().Equals("hpbar")).FirstOrDefault();
+        hpBar.maxValue = ps.GetStat(Stat.MaxHP);
+        hpBar.value = ps.GetStat(Stat.HP);
+        texts.Where(t => t.name.ToLower().StartsWith("hptext")).FirstOrDefault().text = hpBar.value + "/" + hpBar.maxValue;
+
+        Slider expBar = bars.Where(b => b.name.ToLower().Equals("expbar")).FirstOrDefault();
+        expBar.maxValue = ps.GetStat(Stat.MaxExp);
+        expBar.value = ps.GetStat(Stat.Exp);
+    }
+
+    internal bool Buy(ShopItem shopItem)
+    {
+        if(gold >= shopItem.Price)
+        {
+            gold -= shopItem.Price;
+            GivePlayer(shopItem.Item);
+            return true;
+        }
+        return false;
+    }
+
+    internal bool StartTrapSequence(TrapStatBlock statBlock)
+    {
+        player.Evade(statBlock);
+
+        PlayerStats ps = player.PlayerStatBlock;
+
+        if (ps.GetStat(Stat.HP) <= 0)
+        {
+            return false;
+        }
+
+        ps.rewardExp(1);
+
+        return true;
     }
 
     private void Awake()

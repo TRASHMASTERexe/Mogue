@@ -20,10 +20,10 @@ public abstract class Enemy : MonoBehaviour
 
     public EnemyStatBlock initEnemy()
     {
-        int atk = Random.Range(MinAtk, MaxAtk);
-        int def = Random.Range(MinDef, MaxDef);
-        int spd = Random.Range(MinSpd, MaxSpd);
-        int hp = Random.Range(MinHp, MaxHp);
+        int atk = Random.Range(MinAtk, MaxAtk+1);
+        int def = Random.Range(MinDef, MaxDef+1);
+        int spd = Random.Range(MinSpd, MaxSpd+1);
+        int hp = Random.Range(MinHp, MaxHp+1);
         EnemyStatBlock sb = gameObject.AddComponent<EnemyStatBlock>();
         sb.StatBlockConstructor(atk, def, spd, hp);
         return sb;

@@ -6,5 +6,17 @@ using UnityEngine.UI;
 
 public class MerchantInfoStorage : MonoBehaviour
 {
-    public List<ShopItem> ShopItems { get; set; }
+    public GameObject parent { get; set; }
+    public ShopItem ShopItem { get; set; }
+
+    public void OnClick()
+    {
+        Debug.Log("inside onclick");
+        if (GameManager.GetManager().InitShopInteraction(ShopItem))
+        {
+            //popup telling what the item does??
+            Destroy(parent);
+        }
+    }
+
 }
